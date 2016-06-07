@@ -22,7 +22,7 @@ public class LongDeserializer implements Deserializer<Long> {
         // nothing to do
     }
 
-    public Long deserialize(String topic, byte[] data) {
+    static public Long deserialize(byte[] data) {
         if (data == null)
             return null;
         if (data.length != 8) {
@@ -36,6 +36,10 @@ public class LongDeserializer implements Deserializer<Long> {
             value |= b & 0xFF;
         }
         return value;
+    }
+
+    public Long deserialize(String topic, byte[] data) {
+        return deserialize(data);
     }
 
     public void close() {

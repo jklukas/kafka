@@ -20,7 +20,7 @@ public class LongSerializer implements Serializer<Long> {
         // nothing to do
     }
 
-    public byte[] serialize(String topic, Long data) {
+    static public byte[] serialize(Long data) {
         if (data == null)
             return null;
 
@@ -34,6 +34,10 @@ public class LongSerializer implements Serializer<Long> {
             (byte) (data >>> 8),
             data.byteValue()
         };
+    }
+
+    public byte[] serialize(String topic, Long data) {
+        return serialize(data);
     }
 
     public void close() {
